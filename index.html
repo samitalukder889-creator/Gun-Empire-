@@ -3,141 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Cyber Shooter Pro Elite</title>
+    <title>Cyber Strike Elite</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Splash Screen -->
-    <div id="splash-screen" class="screen active">
-        <div class="splash-box">
-            <div class="app-logo-icon">⚡</div>
-            <h1 class="logo-text">CYBER <span class="c1">SHOOTER PRO</span></h1>
-            <div class="badge-sub">TACTICAL COMBAT OPS</div>
-            <div class="load-track"><div id="load-progress"></div></div>
-            <p id="load-text">Loading Combat Engine... 0%</p>
-        </div>
-    </div>
-
-    <!-- Main Hub Dashboard -->
-    <div id="hub-screen" class="screen">
-        <header class="app-header">
-            <div class="header-pill">⚙️ Settings</div>
-            <div class="pro-title">🔥 BATTLEFIELD ELITE</div>
-            <div class="header-pill">🪙 <span id="user-coins">1000</span></div>
+    <!-- LOBBY SCREEN -->
+    <div id="lobby-screen" class="screen active">
+        <header class="top-bar">
+            <div class="brand">⚡ CYBER STRIKE ELITE</div>
+            <div class="currency-hub">🪙 Coins: <span id="lobby-coins">1000</span></div>
         </header>
-
-        <div class="dashboard-body">
+        <div class="lobby-content">
             <div class="hero-card">
-                <h2>TACTICAL FIRING OPERATIONS</h2>
-                <p>Upgrade your firearms, enter hostile combat zones, and eliminate moving targets.</p>
-                <div class="hero-btn-row">
-                    <button class="action-main-btn shop" onclick="openArmoryModal()">🔫 Weapon Armory</button>
-                </div>
-            </div>
-
-            <div class="section-box">
-                <h3>CHOOSE COMBAT MODE</h3>
-                <div class="mode-grid">
-                    <div class="mode-tile" onclick="selectMode('Campaign')">
-                        <span class="m-emoji">🗺️</span>
-                        <div>
-                            <h4>Campaign Missions</h4>
-                            <p>Progressive tactical clearances</p>
-                        </div>
-                    </div>
-                    <div class="mode-tile" onclick="selectMode('Survival')">
-                        <span class="m-emoji">💀</span>
-                        <div>
-                            <h4>Endless Survival</h4>
-                            <p>Survive infinite waves of hostiles</p>
-                        </div>
-                    </div>
+                <h2>TACTICAL COMBAT OPS</h2>
+                <p>Select your high-tier arsenal, upgrade firepower, and enter hostile combat zones.</p>
+                <div class="btn-group">
+                    <button class="primary-btn" onclick="openArmory()">🔫 Weapon Armory</button>
+                    <button class="start-btn" onclick="startMission()">🚀 Deploy Mission</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- World Selection Screen -->
-    <div id="world-screen" class="screen">
-        <header class="app-header">
-            <button class="back-btn" onclick="goHome()">⬅ Menu</button>
-            <h2 id="mode-header-title">Select Operational Zone</h2>
-            <div style="width:60px;"></div>
-        </header>
-
-        <div class="worlds-container">
-            <div class="world-card" onclick="launchGame('Urban Safehouse', '#0f172a', '#1e293b')">
-                <div class="world-thumb house">🏠</div>
-                <div class="world-desc">
-                    <h3>Zone 1: Urban Safehouse</h3>
-                    <p>Close quarters combat inside restricted facility rooms.</p>
-                </div>
-            </div>
-            <div class="world-card" onclick="launchGame('Desert Badlands', '#451a03', '#78350f')">
-                <div class="world-thumb desert">🏜️</div>
-                <div class="world-desc">
-                    <h3>Zone 2: Desert Badlands</h3>
-                    <p>Wide open tactical terrain with extreme hostile movement.</p>
-                </div>
-            </div>
-            <div class="world-card" onclick="launchGame('Cyber Matrix City', '#3b0764', '#581c87')">
-                <div class="world-thumb city">🌆</div>
-                <div class="world-desc">
-                    <h3>Zone 3: Cyber Matrix City</h3>
-                    <p>Neon-lit futuristic ruins overrun by elite rogue units.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Active Gameplay Arena -->
-    <div id="play-screen" class="screen">
-        <div class="game-hud">
-            <div class="hud-box">❤️ HP: <span id="hp-val">100</span></div>
-            <div class="hud-box">🎯 Score: <span id="score-val">0</span></div>
-            <div class="hud-box">🏆 Level: <span id="lvl-val">1</span></div>
-            <button class="quit-btn" onclick="goHome()">❌ Exit</button>
-        </div>
-
-        <div id="battlefield" onclick="shootWeapon(event)">
-            <div class="crosshair">🎯</div>
-            <div id="zone-indicator">Zone: Training Ground</div>
-        </div>
-
-        <!-- Modern Firing Control Bar -->
-        <div class="game-footer-ctrl">
-            <button class="ctrl-action-btn reload" onclick="reloadAmmo()">
-                <span>🔄</span> RELOAD <small id="ammo-txt">30/30</small>
-            </button>
-            <div class="weapon-status-hub">
-                <span id="active-gun-name">🔫 M4A1 Assault</span>
-            </div>
-            <button class="ctrl-action-btn fire-special" onclick="throwGrenade()">
-                <span>💣</span> AIR STRIKE
-            </button>
-        </div>
-    </div>
-
-    <!-- Weapon Armory Modal -->
-    <div id="armory-modal" class="modal-screen">
-        <div class="modal-content">
+    <!-- ARMORY MODAL / SHOP -->
+    <div id="armory-modal" class="modal">
+        <div class="modal-box">
             <h2>WEAPON ARMORY</h2>
-            <p>Select or purchase high-tier firearms for better combat efficiency.</p>
-            <div class="gun-list">
-                <div class="gun-item" onclick="equipWeapon('M4A1 Assault', 50, '30/30')">
-                    <span>🔫 M4A1 Assault</span>
-                    <span class="gun-tag equipped">Equipped</span>
+            <p>Purchase or equip advanced combat firearms.</p>
+            <div class="gun-grid">
+                <div class="gun-card" onclick="selectWeapon('M4A1 Assault', 50, 30, 0)">
+                    <div>
+                        <h3>M4A1 Assault</h3>
+                        <p>Damage: 50 | Ammo: 30</p>
+                    </div>
+                    <span class="status-tag equipped" id="tag-m4a1">Equipped</span>
                 </div>
-                <div class="gun-item" onclick="equipWeapon('Tactical Shotgun', 100, '8/8')">
-                    <span>💥 Tactical Shotgun</span>
-                    <span class="gun-tag">Ready</span>
+                <div class="gun-card" onclick="selectWeapon('Vector SMG', 35, 45, 200)">
+                    <div>
+                        <h3>Vector SMG</h3>
+                        <p>Damage: 35 | Ammo: 45</p>
+                    </div>
+                    <span class="status-tag" id="tag-vector">Cost: 200 🪙</span>
                 </div>
-                <div class="gun-item" onclick="equipWeapon('Sniper AWM Pro', 200, '5/5')">
-                    <span>🎯 Sniper AWM Pro</span>
-                    <span class="gun-tag">Ready</span>
+                <div class="gun-card" onclick="selectWeapon('AWM Sniper', 100, 10, 500)">
+                    <div>
+                        <h3>AWM Sniper</h3>
+                        <p>Damage: 100 | Ammo: 10</p>
+                    </div>
+                    <span class="status-tag" id="tag-awm">Cost: 500 🪙</span>
                 </div>
             </div>
-            <button class="close-modal-btn" onclick="closeArmoryModal()">Back to Menu</button>
+            <button class="close-btn" onclick="closeArmory()">Back to Lobby</button>
+        </div>
+    </div>
+
+    <!-- GAMEPLAY SCREEN -->
+    <div id="game-screen" class="screen">
+        <div class="game-hud">
+            <div class="hud-item">❤️ HP: <span id="hp-val">100</span></div>
+            <div class="hud-item">🎯 Score: <span id="score-val">0</span></div>
+            <div class="hud-item">🔫 <span id="current-gun-name">M4A1 Assault</span></div>
+            <button class="exit-match-btn" onclick="returnToLobby()">✕ Retreat</button>
+        </div>
+
+        <div id="battlefield" onclick="fireWeapon(event)">
+            <div class="crosshair">🎯</div>
+            <div class="ammo-display">AMMO: <span id="ammo-val">30</span>/<span id="max-ammo-val">30</span></div>
         </div>
     </div>
 
