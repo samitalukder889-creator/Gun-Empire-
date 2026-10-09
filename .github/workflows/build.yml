@@ -17,30 +17,22 @@ jobs:
       with:
         node-version: 18
 
-    - name: Install Cordova CLI
-      run: npm install -g cordova
-
-    - name: Create Cordova Project Structure
+    - name: Install Cordova & Android Dependencies
       run: |
-        cordova create myapp com.cybershooter.proelite "Cyber Shooter Pro Elite"
-        cd myapp
+        npm install -g cordova
+        cordova create gameapp com.cybershooter.proelite "Cyber Shooter Pro Elite"
+        cd gameapp
+        rm -rf www/*
+        cp ../index.html www/
+        cp ../style.css www/
+        cp ../script.js www/
+        cp ../config.xml .
         cordova platform add android
-
-    - name: Copy Web Assets
-      run: |
-        cp index.html myapp/www/
-        cp style.css myapp/www/
-        cp script.js myapp/www/
-        cp config.xml myapp/
-
-    - name: Build Android Release APK
-      run: |
-        cd myapp
         cordova build android --release
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
       with:
         name: CyberShooter-ProElite-APK
-        path: myapp/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
+        path: gameapp/platforms/android/app/build/outputs/apk/release/
         
