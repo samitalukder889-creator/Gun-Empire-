@@ -1,0 +1,46 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: Install Cordova CLI
+      run: npm install -g cordova
+
+    - name: Create Cordova Project Structure
+      run: |
+        cordova create myapp com.cybershooter.proelite "Cyber Shooter Pro Elite"
+        cd myapp
+        cordova platform add android
+
+    - name: Copy Web Assets
+      run: |
+        cp index.html myapp/www/
+        cp style.css myapp/www/
+        cp script.js myapp/www/
+        cp config.xml myapp/
+
+    - name: Build Android Release APK
+      run: |
+        cd myapp
+        cordova build android --release
+
+    - name: Upload APK Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: CyberShooter-ProElite-APK
+        path: myapp/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
+        
