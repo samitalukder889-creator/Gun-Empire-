@@ -1,0 +1,389 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    user-select: none;
+}
+
+body {
+    background-color: #030712;
+    color: #f8fafc;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.screen {
+    display: none;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #030712;
+}
+
+.screen.active {
+    display: flex;
+}
+
+/* Splash Screen */
+#splash-screen {
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle, #0f172a 0%, #030712 100%);
+    z-index: 999;
+}
+
+.splash-box { text-align: center; }
+.app-logo-icon { font-size: 60px; margin-bottom: 10px; animation: pulseLogo 1s infinite alternate; }
+@keyframes pulseLogo { 0% { transform: scale(1); filter: drop-shadow(0 0 10px #38bdf8); } 100% { transform: scale(1.15); filter: drop-shadow(0 0 20px #ef4444); } }
+
+.logo-text { font-size: 30px; font-weight: 900; letter-spacing: 2px; color: #fff; }
+.logo-text .c1 { color: #ef4444; }
+
+.badge-sub {
+    background: #ef4444;
+    color: #fff;
+    padding: 5px 16px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: bold;
+    display: inline-block;
+    margin: 10px 0 25px 0;
+}
+
+.load-track {
+    width: 250px;
+    height: 10px;
+    background: #0f172a;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 0 auto 8px auto;
+    border: 1px solid #1e293b;
+}
+
+#load-progress {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #38bdf8, #22c55e);
+    border-radius: 5px;
+    transition: width 0.1s;
+}
+
+#load-text { font-size: 12px; color: #94a3b8; }
+
+/* App Header */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 18px;
+    background: #0f172a;
+    border-bottom: 2px solid #1e293b;
+}
+
+.header-pill {
+    background: #1e293b;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: bold;
+    border: 1px solid #334155;
+}
+
+.pro-title {
+    font-size: 14px;
+    font-weight: 900;
+    color: #38bdf8;
+    letter-spacing: 1px;
+}
+
+/* Dashboard */
+.dashboard-body {
+    padding: 16px;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.hero-card {
+    background: linear-gradient(135deg, #0f172a, #030712);
+    padding: 22px;
+    border-radius: 16px;
+    border: 2px solid #1e293b;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+.hero-card h2 { font-size: 20px; color: #38bdf8; margin-bottom: 6px; }
+.hero-card p { font-size: 13px; color: #94a3b8; line-height: 1.4; margin-bottom: 15px; }
+
+.hero-btn-row { display: flex; gap: 10px; }
+.action-main-btn {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.section-box h3 { font-size: 13px; color: #64748b; margin-bottom: 12px; letter-spacing: 1px; font-weight: 700; }
+
+.mode-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.mode-tile {
+    background: #0f172a;
+    padding: 16px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    border: 2px solid #1e293b;
+    transition: transform 0.1s, border-color 0.2s;
+}
+.mode-tile:active { transform: scale(0.98); }
+.mode-tile:hover { border-color: #38bdf8; }
+
+.m-emoji { font-size: 32px; background: #030712; padding: 10px; border-radius: 10px; }
+.mode-tile h4 { font-size: 16px; color: #fff; margin-bottom: 4px; }
+.mode-tile p { font-size: 12px; color: #94a3b8; }
+
+/* World Selection */
+.back-btn {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+#mode-header-title { font-size: 16px; color: #fff; }
+
+.worlds-container {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.world-card {
+    background: #0f172a;
+    border-radius: 14px;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    border: 2px solid #1e293b;
+    transition: transform 0.1s;
+}
+.world-card:active { transform: scale(0.98); }
+
+.world-thumb {
+    width: 65px;
+    height: 65px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+}
+.house { background: #1e293b; }
+.desert { background: #78350f; }
+.city { background: #581c87; }
+
+.world-desc h3 { font-size: 16px; color: #fff; margin-bottom: 4px; }
+.world-desc p { font-size: 12px; color: #94a3b8; }
+
+/* Gameplay Arena */
+.game-hud {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #0f172a;
+    padding: 12px 18px;
+    font-size: 13px;
+    font-weight: bold;
+    border-bottom: 2px solid #1e293b;
+}
+.quit-btn {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#battlefield {
+    flex-grow: 1;
+    position: relative;
+    overflow: hidden;
+    cursor: crosshair;
+}
+
+.crosshair {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    color: rgba(56, 189, 248, 0.8);
+    pointer-events: none;
+}
+
+#zone-indicator {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    background: rgba(0,0,0,0.7);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    color: #cbd5e1;
+    pointer-events: none;
+    border: 1px solid #1e293b;
+}
+
+/* Combat Target Enemy */
+.combat-target {
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    background: #ef4444;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px;
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.8);
+    cursor: pointer;
+}
+
+.enemy-hp-bar {
+    position: absolute;
+    top: -8px;
+    left: 5px;
+    width: 45px;
+    height: 5px;
+    background: #334155;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.enemy-hp-fill {
+    width: 100%;
+    height: 100%;
+    background: #22c55e;
+}
+
+/* Control Bar */
+.game-footer-ctrl {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #0f172a;
+    padding: 12px 18px;
+    border-top: 2px solid #1e293b;
+    gap: 12px;
+}
+
+.ctrl-action-btn {
+    flex: 1;
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    color: white;
+    border: 2px solid #334155;
+    padding: 12px;
+    border-radius: 12px;
+    font-weight: 900;
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+.ctrl-action-btn:active { transform: scale(0.95); }
+.ctrl-action-btn.reload { border-color: #38bdf8; color: #38bdf8; }
+.ctrl-action-btn.fire-special { background: linear-gradient(135deg, #ef4444, #991b1b); border-color: #f87171; color: white; }
+
+.ctrl-action-btn small {
+    background: rgba(0,0,0,0.5);
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    color: #fff;
+}
+
+.weapon-status-hub {
+    background: #030712;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid #1e293b;
+    font-size: 12px;
+    font-weight: bold;
+    color: #38bdf8;
+    text-align: center;
+}
+
+/* Modal Armory */
+.modal-screen {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(3, 7, 18, 0.85);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.modal-screen.active { display: flex; }
+
+.modal-content {
+    background: #0f172a;
+    padding: 24px;
+    border-radius: 16px;
+    border: 2px solid #334155;
+    width: 340px;
+    text-align: center;
+}
+.modal-content h2 { color: #38bdf8; margin-bottom: 8px; font-size: 18px; }
+.modal-content p { font-size: 12px; color: #94a3b8; margin-bottom: 16px; }
+
+.gun-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+.gun-item {
+    background: #1e293b;
+    padding: 12px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid #334155;
+}
+.gun-item:hover { border-color: #38bdf8; }
+.gun-tag { font-size: 11px; background: #334155; padding: 4px 8px; border-radius: 6px; }
+.gun-tag.equipped { background: #22c55e; color: #fff; }
+
+.close-modal-btn {
+    background: #334155;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
