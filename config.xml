@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.cybershooter.proelite" version="3.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Cyber Shooter Pro Elite</name>
+<widget id="com.cybercombat.elite" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Cyber Strike Elite</name>
     <description>Next-Gen Tactical Firing Combat Game</description>
-    <author email="dev@gamehub.com" href="https://github.com">Cyber Ops Studio</author>
+    <author email="dev@cyberstrike.com" href="https://github.com">Cyber Ops Studio</author>
     <content src="index.html" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
