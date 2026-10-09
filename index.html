@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Cyber Strike Elite</title>
+    <title>Tactical Strike Elite</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- LOBBY SCREEN -->
     <div id="lobby-screen" class="screen active">
         <header class="top-bar">
-            <div class="brand">⚡ CYBER STRIKE ELITE</div>
+            <div class="brand">⚔️ TACTICAL STRIKE ELITE</div>
             <div class="currency-hub">🪙 Coins: <span id="lobby-coins">1000</span></div>
         </header>
         <div class="lobby-content">
             <div class="hero-card">
-                <h2>TACTICAL COMBAT OPS</h2>
-                <p>Select your high-tier arsenal, upgrade firepower, and enter hostile combat zones.</p>
+                <h2>FRONT-LINE COMBAT ZONE</h2>
+                <p>Equip powerful weapons, use movement controls to walk forward, track enemies, and eliminate them.</p>
                 <div class="btn-group">
                     <button class="primary-btn" onclick="openArmory()">🔫 Weapon Armory</button>
                     <button class="start-btn" onclick="startMission()">🚀 Deploy Mission</button>
@@ -25,11 +25,11 @@
         </div>
     </div>
 
-    <!-- ARMORY MODAL / SHOP -->
+    <!-- ARMORY MODAL -->
     <div id="armory-modal" class="modal">
         <div class="modal-box">
             <h2>WEAPON ARMORY</h2>
-            <p>Purchase or equip advanced combat firearms.</p>
+            <p>Upgrade your firepower for tactical missions.</p>
             <div class="gun-grid">
                 <div class="gun-card" onclick="selectWeapon('M4A1 Assault', 50, 30, 0)">
                     <div>
@@ -66,9 +66,29 @@
             <button class="exit-match-btn" onclick="returnToLobby()">✕ Retreat</button>
         </div>
 
-        <div id="battlefield" onclick="fireWeapon(event)">
-            <div class="crosshair">🎯</div>
-            <div class="ammo-display">AMMO: <span id="ammo-val">30</span>/<span id="max-ammo-val">30</span></div>
+        <!-- 3D WORLD VIEWPORT -->
+        <div id="battlefield">
+            <!-- PLAYER CHARACTER WITH GUN -->
+            <div id="player-character">
+                <div class="player-body">🧍‍♂️</div>
+                <div class="player-gun">🔥🔫</div>
+            </div>
+
+            <!-- DYNAMIC ENEMIES CONTAINER -->
+            <div id="enemies-container"></div>
+        </div>
+
+        <!-- MOBILE CONTROLS (Movement & Action) -->
+        <div class="game-controls">
+            <div class="movement-pad">
+                <button class="ctrl-btn" onclick="movePlayer('left')">◀ WALK LEFT</button>
+                <button class="ctrl-btn highlight-walk" onclick="movePlayer('forward')">▲ WALK FORWARD</button>
+                <button class="ctrl-btn" onclick="movePlayer('right')">WALK RIGHT ▶</button>
+            </div>
+            <div class="action-pad">
+                <div class="ammo-hud">AMMO: <span id="ammo-val">30</span>/<span id="max-ammo-val">30</span></div>
+                <button class="fire-btn" onclick="fireWeapon()">🎯 FIRE</button>
+            </div>
         </div>
     </div>
 
