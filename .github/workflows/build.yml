@@ -39,7 +39,7 @@ jobs:
         cordova build android --release
 
     - name: Upload APK Artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: CyberShooter-ProElite-APK
         path: myapp/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
